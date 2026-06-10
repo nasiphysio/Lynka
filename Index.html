@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lynka – للتوريدات الطبية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:        #2A7A72;
+      --teal-dark:   #1E5C56;
+      --teal-light:  #E8F4F3;
+      --teal-mid:    #3D9E95;
+      --white:       #FFFFFF;
+      --text:        #1A2E2D;
+      --muted:       #6B8C8A;
+      --border:      #C8E0DE;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 70px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 44px; width: auto; }
+    .nav-logo span { font-size: 1.3rem; font-weight: 900; color: var(--teal); letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.95rem;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-cta {
+      background: var(--teal); color: var(--white);
+      padding: 8px 22px; border-radius: 25px;
+      text-decoration: none; font-weight: 700; font-size: 0.9rem;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--teal-dark); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 60%, var(--teal-mid) 100%);
+      color: var(--white);
+      padding: 90px 5% 80px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 40px; flex-wrap: wrap;
+    }
+    .hero-text { max-width: 540px; }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 5px 16px; border-radius: 20px;
+      font-size: 0.85rem; font-weight: 600; margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900; line-height: 1.3;
+      margin-bottom: 18px;
+    }
+    .hero h1 span { color: #A8DDD9; }
+    .hero p { font-size: 1.05rem; opacity: 0.9; margin-bottom: 32px; max-width: 440px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-white {
+      background: var(--white); color: var(--teal-dark);
+      padding: 12px 28px; border-radius: 30px;
+      text-decoration: none; font-weight: 700; font-size: 0.95rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.6); color: var(--white);
+      padding: 12px 28px; border-radius: 30px;
+      text-decoration: none; font-weight: 700; font-size: 0.95rem;
+      transition: background .2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+    .hero-badge {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 16px; padding: 32px 36px;
+      text-align: center; min-width: 220px;
+    }
+    .hero-badge .num { font-size: 3rem; font-weight: 900; }
+    .hero-badge .label { font-size: 0.9rem; opacity: 0.85; }
+
+    /* ── SECTION WRAPPER ── */
+    section { padding: 70px 5%; }
+    .section-label {
+      display: inline-block;
+      background: var(--teal-light); color: var(--teal);
+      padding: 4px 14px; border-radius: 20px;
+      font-size: 0.8rem; font-weight: 700; margin-bottom: 10px;
+    }
+    h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; color: var(--text); margin-bottom: 10px; }
+    .sub { color: var(--muted); font-size: 1rem; margin-bottom: 40px; }
+
+    /* ── PRODUCTS ── */
+    #products { background: var(--teal-light); }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 24px;
+    }
+    .product-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(42,122,114,0.08);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(42,122,114,0.15); }
+    .product-img {
+      width: 100%; height: 200px; object-fit: cover;
+      background: var(--teal-light);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; }
+    .product-img .placeholder {
+      font-size: 3rem; color: var(--teal); opacity: 0.4;
+    }
+    .product-body { padding: 20px; }
+    .product-tag {
+      font-size: 0.75rem; font-weight: 700;
+      color: var(--teal); background: var(--teal-light);
+      padding: 3px 10px; border-radius: 10px;
+      display: inline-block; margin-bottom: 8px;
+    }
+    .product-body h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 6px; }
+    .product-body p { font-size: 0.9rem; color: var(--muted); margin-bottom: 14px; }
+    .product-sizes { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .size-badge {
+      background: var(--teal-light); color: var(--teal);
+      padding: 3px 12px; border-radius: 12px;
+      font-size: 0.8rem; font-weight: 700; border: 1px solid var(--border);
+    }
+
+    /* ── HOW TO ADD IMAGE NOTE ── */
+    .img-note {
+      background: #fff8e1; border: 1px dashed #f0c040;
+      border-radius: 8px; padding: 10px 14px;
+      font-size: 0.78rem; color: #7a6000; margin-top: 8px;
+      display: none; /* hidden in final version, show during editing */
+    }
+
+    /* ── WHY US ── */
+    .why-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px;
+    }
+    .why-card {
+      border: 1px solid var(--border); border-radius: 14px;
+      padding: 28px 22px; text-align: center;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .why-card:hover { border-color: var(--teal); box-shadow: 0 4px 16px rgba(42,122,114,0.1); }
+    .why-icon { font-size: 2.2rem; margin-bottom: 12px; }
+    .why-card h4 { font-size: 1rem; font-weight: 800; margin-bottom: 6px; }
+    .why-card p { font-size: 0.88rem; color: var(--muted); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--teal); color: var(--white); text-align: center; }
+    #contact h2 { color: var(--white); }
+    #contact .sub { color: rgba(255,255,255,0.8); }
+    .contact-cards {
+      display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 10px;
+    }
+    .contact-card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 14px; padding: 22px 30px;
+      min-width: 180px; text-align: center;
+      text-decoration: none; color: var(--white);
+      transition: background .2s;
+    }
+    .contact-card:hover { background: rgba(255,255,255,0.2); }
+    .contact-card .icon { font-size: 1.8rem; margin-bottom: 8px; }
+    .contact-card .ctitle { font-weight: 700; font-size: 0.85rem; opacity: 0.8; margin-bottom: 4px; }
+    .contact-card .cval { font-weight: 800; font-size: 1rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--teal-dark); color: rgba(255,255,255,0.7);
+      text-align: center; padding: 24px 5%;
+      font-size: 0.85rem;
+    }
+    footer span { color: var(--white); font-weight: 700; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero { padding: 60px 5%; }
+      .hero-badge { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <!-- ===== ضع رابط صورة اللوجو من Google Drive هنا ===== -->
+    <!-- مثال: <img src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" alt="Lynka Logo"> -->
+    <img src="https://via.placeholder.com/44x44/2A7A72/FFFFFF?text=L" alt="Lynka Logo"/>
+    <span>LYNKA</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#products">المنتجات</a></li>
+    <li><a href="#why">لماذا Lynka</a></li>
+    <li><a href="#contact">تواصل معنا</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">اطلب الآن</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-tag">🏥 توريدات طبية متخصصة</div>
+    <h1>جودة طبية<br/>تثق بها <span>Lynka</span></h1>
+    <p>نوفر أفضل الأربطة والمستلزمات الطبية للمستشفيات والعيادات والصيدليات في مصر.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-white">تصفح المنتجات</a>
+      <a href="#contact" class="btn-outline">تواصل معنا</a>
+    </div>
+  </div>
+  <div class="hero-badge">
+    <div class="num">4+</div>
+    <div class="label">منتجات طبية<br/>متخصصة</div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-label">منتجاتنا</div>
+  <h2>الأربطة الطبية</h2>
+  <p class="sub">جميع منتجاتنا تلتزم بأعلى معايير الجودة الطبية</p>
+
+  <div class="products-grid">
+
+    <!-- FLEXIMOLL -->
+    <div class="product-card">
+      <div class="product-img">
+        <!-- ===== لإضافة صورة من Google Drive =====
+             1. افتح الصورة في Drive
+             2. Share → Anyone with the link → Copy link
+             3. خد الـ ID من الرابط (الجزء بعد /d/ وقبل /view)
+             4. حط الرابط ده: https://drive.google.com/uc?export=view&id=YOUR_ID
+             ========================================= -->
+        <img src="https://via.placeholder.com/400x200/E8F4F3/2A7A72?text=Fleximoll" alt="Fleximoll"/>
+      </div>
+      <div class="product-body">
+        <span class="product-tag">رباط مرن</span>
+        <h3>Fleximoll</h3>
+        <p>رباط طبي مرن عالي الجودة، مريح على الجلد ومناسب للاستخدام اليومي والرياضي.</p>
+      </div>
+    </div>
+
+    <!-- TUBISOFT -->
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://via.placeholder.com/400x200/E8F4F3/2A7A72?text=Tubisoft" alt="Tubisoft"/>
+      </div>
+      <div class="product-body">
+        <span class="product-tag">رباط أنبوبي ناعم</span>
+        <h3>Tubisoft</h3>
+        <p>رباط أنبوبي ناعم ومريح، مثالي لحماية الجلد الحساس وتثبيت الضمادات.</p>
+        <div class="product-sizes">
+          <span class="size-badge">8 cm</span>
+          <span class="size-badge">12 cm</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TUBICOMFORT -->
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://via.placeholder.com/400x200/E8F4F3/2A7A72?text=Tubicomfort" alt="Tubicomfort"/>
+      </div>
+      <div class="product-body">
+        <span class="product-tag">رباط أنبوبي مريح</span>
+        <h3>Tubicomfort</h3>
+        <p>رباط أنبوبي بتقنية Comfort للراحة القصوى، يوفر ضغطاً منتظماً ودعماً فعالاً.</p>
+        <div class="product-sizes">
+          <span class="size-badge">8 cm</span>
+          <span class="size-badge">12 cm</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DERMAFOAM -->
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://via.placeholder.com/400x200/E8F4F3/2A7A72?text=Dermafoam" alt="Dermafoam"/>
+      </div>
+      <div class="product-body">
+        <span class="product-tag">رغوة جلدية</span>
+        <h3>Dermafoam</h3>
+        <p>رغوة طبية متخصصة لحماية الجلد والعناية به، تستخدم تحت الأربطة والجبائر.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-label">لماذا Lynka</div>
+  <h2>شريكك الموثوق في التوريدات الطبية</h2>
+  <p class="sub">نلتزم بتقديم أفضل المنتجات بأعلى معايير الجودة</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">✅</div>
+      <h4>جودة معتمدة</h4>
+      <p>جميع منتجاتنا تلتزم بالمعايير الطبية الدولية</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🚚</div>
+      <h4>توصيل سريع</h4>
+      <p>نضمن توصيل طلباتك في أسرع وقت ممكن</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🤝</div>
+      <h4>خدمة احترافية</h4>
+      <p>فريق متخصص لدعمك والإجابة على استفساراتك</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💰</div>
+      <h4>أسعار تنافسية</h4>
+      <p>أفضل جودة بأسعار مناسبة لجميع الميزانيات</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label" style="background:rgba(255,255,255,0.2);color:#fff;">تواصل معنا</div>
+  <h2>نحن هنا لخدمتك</h2>
+  <p class="sub">تواصل معنا لطلب المنتجات أو الاستفسار عن الأسعار</p>
+  <div class="contact-cards">
+    <!-- ===== غيّر الأرقام والإيميل بتاعتك هنا ===== -->
+    <a href="tel:+201000000000" class="contact-card">
+      <div class="icon">📞</div>
+      <div class="ctitle">اتصل بنا</div>
+      <div class="cval">01000000000+</div>
+    </a>
+    <a href="https://wa.me/201000000000" class="contact-card" target="_blank">
+      <div class="icon">💬</div>
+      <div class="ctitle">واتساب</div>
+      <div class="cval">راسلنا الآن</div>
+    </a>
+    <a href="mailto:info@lynka-med.com" class="contact-card">
+      <div class="icon">✉️</div>
+      <div class="ctitle">إيميل</div>
+      <div class="cval">info@lynka-med.com</div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>LYNKA</span> للتوريدات الطبية — جميع الحقوق محفوظة</p>
+</footer>
+
+</body>
+</html>
