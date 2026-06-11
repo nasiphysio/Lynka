@@ -143,9 +143,9 @@
 <body>
 
 <!-- LIGHTBOX -->
-<div id="lightbox">
-  <button id="lightbox-close" onclick="closeLightbox()">✕</button>
-  <img id="lightbox-img" src="" alt=""/>
+<div id="lightbox" onclick="closeLightbox(event)">
+  <button id="lightbox-close" onclick="forceCloseLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()"/>
 </div>
 
 <!-- ============================================================
@@ -215,7 +215,6 @@
           <div class="use-item" data-ar="تثبيت فوم الحشو تحت الأربطة" data-en="Securing foam padding under bandages">تثبيت فوم الحشو تحت الأربطة</div>
           <div class="use-item" data-ar="ضغط خفيف على المناطق الحساسة" data-en="Light compression on sensitive areas">ضغط خفيف على المناطق الحساسة</div>
         </div>
-        <!-- ←←← غيّر رقم الواتساب هنا -->
         <a href="#contact" class="product-btn" data-ar="📞 اطلب المنتج" data-en="📞 Request Product">📞 اطلب المنتج</a>
       </div>
     </div>
@@ -305,14 +304,7 @@
 </section>
 
 
-<!-- ============================================================
-     📞  بيانات التواصل
-     ============================================================
-     📱  رقم التليفون  ←  غيّر +20XXXXXXXXXX في href وفي النص
-     💬  رقم الواتساب  ←  غيّر 20XXXXXXXXXX في href
-     ✉️  الإيميل        ←  غيّر info@lynka-med.com في href وفي النص
-     📍  العنوان        ←  اكتب العنوان داخل cval address
-     ============================================================ -->
+<!-- CONTACT -->
 <section id="contact">
   <div class="section-header">
     <div class="section-label" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</div>
@@ -364,28 +356,23 @@
     const isEn = currentLang === 'en';
     localStorage.setItem('lang', currentLang);
 
-    // direction
     document.documentElement.lang = currentLang;
     document.documentElement.dir  = isEn ? 'ltr' : 'rtl';
 
-    // button label
     document.getElementById('lang-btn').textContent = isEn ? '🌐 عربي' : '🌐 EN';
 
-    // translate all elements with data-ar / data-en
     document.querySelectorAll('[data-ar]').forEach(el => {
       const txt = isEn ? el.dataset.en : el.dataset.ar;
       if (!txt) return;
-      // h1 may contain HTML (span)
       if (el.tagName === 'H1') { el.innerHTML = txt; return; }
       el.textContent = txt;
     });
 
-    // fix bullet direction for use-items
     document.querySelectorAll('.use-item').forEach(el => {
       el.style.paddingRight = isEn ? '0'    : '16px';
       el.style.paddingLeft  = isEn ? '16px' : '0';
     });
-    document.querySelectorAll('.use-item::before');
+    
     const style = document.getElementById('dir-style') || document.createElement('style');
     style.id = 'dir-style';
     style.textContent = isEn
@@ -394,21 +381,31 @@
     document.head.appendChild(style);
   }
 
-  // ── Lightbox ──
+  // ── Lightbox Fixed Functions ──
   function openLightbox(container) {
     const img = container.querySelector('img');
-    document.getElementById('lightbox-img').src = img.src;
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
+    if (img) {
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
   }
-  function closeLightbox() {
+  
+  function closeLightbox(event) {
+    // يغلق فقط إذا تم الضغط على الخلفية السوداء وليس الصورة نفسها
+    if (event.target === document.getElementById('lightbox')) {
+      forceCloseLightbox();
+    }
+  }
+
+  function forceCloseLightbox() {
     document.getElementById('lightbox').classList.remove('open');
     document.body.style.overflow = '';
   }
-  document.getElementById('lightbox').addEventListener('click', function(e) {
-    if (e.target === this) closeLightbox();
+
+  document.addEventListener('keydown', e => { 
+    if (e.key === 'Escape') forceCloseLightbox(); 
   });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 </script>
 </body>
 </html>
