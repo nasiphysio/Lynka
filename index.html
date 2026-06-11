@@ -1,222 +1,121 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lynka – للتوريدات الطبية</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --teal:        #2A7A72;
-      --teal-dark:   #1E5C56;
-      --teal-light:  #E8F4F3;
-      --teal-mid:    #3D9E95;
-      --white:       #FFFFFF;
-      --text:        #1A2E2D;
-      --muted:       #6B8C8A;
-      --border:      #C8E0DE;
+      --teal: #2A7A72; --teal-dark: #1E5C56; --teal-light: #E8F4F3;
+      --teal-mid: #3D9E95; --white: #FFFFFF; --text: #1A2E2D;
+      --muted: #6B8C8A; --border: #C8E0DE;
     }
+    body { font-family: 'Cairo', sans-serif; background: var(--white); color: var(--text); line-height: 1.7; }
 
-    body {
-      font-family: 'Cairo', sans-serif;
-      background: var(--white);
-      color: var(--text);
-      line-height: 1.7;
-    }
-
-    /* ── NAV ── */
+    /* NAV */
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
+      background: var(--white); border-bottom: 2px solid var(--border);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5%;
-      height: 70px;
+      padding: 0 5%; height: 72px;
+      box-shadow: 0 2px 12px rgba(42,122,114,.07);
     }
-    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-logo img { height: 44px; width: auto; }
-    .nav-logo span { font-size: 1.3rem; font-weight: 900; color: var(--teal); letter-spacing: 1px; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo img { height: 48px; width: auto; object-fit: contain; border-radius: 8px; }
     .nav-links { display: flex; gap: 28px; list-style: none; }
-    .nav-links a {
-      text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.95rem;
-      transition: color .2s;
-    }
+    .nav-links a { text-decoration: none; color: var(--text); font-weight: 600; font-size: .95rem; transition: color .2s; }
     .nav-links a:hover { color: var(--teal); }
-    .nav-cta {
-      background: var(--teal); color: var(--white);
-      padding: 8px 22px; border-radius: 25px;
-      text-decoration: none; font-weight: 700; font-size: 0.9rem;
-      transition: background .2s;
-    }
-    .nav-cta:hover { background: var(--teal-dark); }
+    .nav-cta { background: var(--teal); color: var(--white); padding: 9px 24px; border-radius: 25px; text-decoration: none; font-weight: 700; font-size: .9rem; transition: background .2s, transform .2s; }
+    .nav-cta:hover { background: var(--teal-dark); transform: translateY(-1px); }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero {
-      background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 60%, var(--teal-mid) 100%);
-      color: var(--white);
-      padding: 90px 5% 80px;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 40px; flex-wrap: wrap;
+      background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 55%, var(--teal-mid) 100%);
+      color: var(--white); padding: 100px 5% 90px;
+      display: flex; align-items: center; justify-content: space-between; gap: 48px; flex-wrap: wrap;
     }
-    .hero-text { max-width: 540px; }
-    .hero-tag {
-      display: inline-block;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.3);
-      padding: 5px 16px; border-radius: 20px;
-      font-size: 0.85rem; font-weight: 600; margin-bottom: 20px;
-    }
-    .hero h1 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 900; line-height: 1.3;
-      margin-bottom: 18px;
-    }
+    .hero-text { max-width: 560px; }
+    .hero-tag { display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); padding: 6px 18px; border-radius: 20px; font-size: .85rem; font-weight: 700; margin-bottom: 22px; }
+    .hero h1 { font-size: clamp(2.2rem,4vw,3.2rem); font-weight: 900; line-height: 1.25; margin-bottom: 18px; }
     .hero h1 span { color: #A8DDD9; }
-    .hero p { font-size: 1.05rem; opacity: 0.9; margin-bottom: 32px; max-width: 440px; }
+    .hero p { font-size: 1.05rem; opacity: .9; margin-bottom: 36px; max-width: 460px; line-height: 1.8; }
     .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn-white {
-      background: var(--white); color: var(--teal-dark);
-      padding: 12px 28px; border-radius: 30px;
-      text-decoration: none; font-weight: 700; font-size: 0.95rem;
-      transition: transform .2s, box-shadow .2s;
-    }
-    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
-    .btn-outline {
-      border: 2px solid rgba(255,255,255,0.6); color: var(--white);
-      padding: 12px 28px; border-radius: 30px;
-      text-decoration: none; font-weight: 700; font-size: 0.95rem;
-      transition: background .2s;
-    }
-    .btn-outline:hover { background: rgba(255,255,255,0.1); }
-    .hero-badge {
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 16px; padding: 32px 36px;
-      text-align: center; min-width: 220px;
-    }
-    .hero-badge .num { font-size: 3rem; font-weight: 900; }
-    .hero-badge .label { font-size: 0.9rem; opacity: 0.85; }
+    .btn-white { background: var(--white); color: var(--teal-dark); padding: 13px 30px; border-radius: 30px; text-decoration: none; font-weight: 800; font-size: .95rem; transition: transform .2s, box-shadow .2s; }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.15); }
+    .btn-outline { border: 2px solid rgba(255,255,255,.7); color: var(--white); padding: 13px 30px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: .95rem; transition: background .2s; }
+    .btn-outline:hover { background: rgba(255,255,255,.12); }
+    .hero-stats { display: flex; flex-direction: column; gap: 16px; }
+    .stat-box { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); border-radius: 14px; padding: 20px 28px; text-align: center; min-width: 160px; }
+    .stat-box .num { font-size: 2.4rem; font-weight: 900; line-height: 1; }
+    .stat-box .lbl { font-size: .82rem; opacity: .85; margin-top: 4px; }
 
-    /* ── SECTION WRAPPER ── */
-    section { padding: 70px 5%; }
-    .section-label {
-      display: inline-block;
-      background: var(--teal-light); color: var(--teal);
-      padding: 4px 14px; border-radius: 20px;
-      font-size: 0.8rem; font-weight: 700; margin-bottom: 10px;
-    }
-    h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; color: var(--text); margin-bottom: 10px; }
-    .sub { color: var(--muted); font-size: 1rem; margin-bottom: 40px; }
+    /* SECTIONS */
+    section { padding: 80px 5%; }
+    .section-header { margin-bottom: 48px; }
+    .section-label { display: inline-block; background: var(--teal-light); color: var(--teal); padding: 5px 16px; border-radius: 20px; font-size: .8rem; font-weight: 800; margin-bottom: 12px; }
+    h2 { font-size: clamp(1.7rem,3vw,2.3rem); font-weight: 900; color: var(--text); margin-bottom: 12px; }
+    .sub { color: var(--muted); font-size: 1rem; max-width: 540px; line-height: 1.7; }
 
-    /* ── PRODUCTS ── */
-    #products { background: var(--teal-light); }
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 24px;
-    }
-    .product-card {
-      background: var(--white);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 2px 12px rgba(42,122,114,0.08);
-      transition: transform .25s, box-shadow .25s;
-    }
-    .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(42,122,114,0.15); }
-    .product-img {
-      width: 100%; height: 200px; object-fit: cover;
-      background: var(--teal-light);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .product-img img { width: 100%; height: 100%; object-fit: cover; }
-    .product-img .placeholder {
-      font-size: 3rem; color: var(--teal); opacity: 0.4;
-    }
-    .product-body { padding: 20px; }
-    .product-tag {
-      font-size: 0.75rem; font-weight: 700;
-      color: var(--teal); background: var(--teal-light);
-      padding: 3px 10px; border-radius: 10px;
-      display: inline-block; margin-bottom: 8px;
-    }
-    .product-body h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 6px; }
-    .product-body p { font-size: 0.9rem; color: var(--muted); margin-bottom: 14px; }
-    .product-sizes { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
-    .size-badge {
-      background: var(--teal-light); color: var(--teal);
-      padding: 3px 12px; border-radius: 12px;
-      font-size: 0.8rem; font-weight: 700; border: 1px solid var(--border);
-    }
+    /* PRODUCTS */
+    #products { background: #F4FAFA; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap: 28px; }
+    .product-card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 2px 16px rgba(42,122,114,.08); transition: transform .28s, box-shadow .28s; border: 1px solid var(--border); }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(42,122,114,.16); }
+    .product-img { width: 100%; height: 220px; overflow: hidden; background: var(--teal-light); }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .product-card:hover .product-img img { transform: scale(1.04); }
+    .product-body { padding: 24px; }
+    .product-tag { font-size: .73rem; font-weight: 800; color: var(--teal); background: var(--teal-light); padding: 4px 12px; border-radius: 10px; display: inline-block; margin-bottom: 10px; }
+    .product-body h3 { font-size: 1.25rem; font-weight: 900; margin-bottom: 10px; color: var(--text); }
+    .product-body p { font-size: .88rem; color: var(--muted); margin-bottom: 16px; line-height: 1.75; }
+    .product-uses { margin-bottom: 14px; }
+    .product-uses .uses-title { font-size: .78rem; font-weight: 800; color: var(--teal-dark); margin-bottom: 6px; }
+    .use-item { font-size: .8rem; color: var(--muted); padding: 2px 0 2px 14px; position: relative; line-height: 1.6; }
+    .use-item::before { content: '•'; color: var(--teal); position: absolute; right: 0; font-weight: 900; }
+    .product-sizes { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+    .size-badge { background: var(--teal-light); color: var(--teal-dark); padding: 4px 14px; border-radius: 12px; font-size: .78rem; font-weight: 800; border: 1px solid var(--border); }
 
-    /* ── HOW TO ADD IMAGE NOTE ── */
-    .img-note {
-      background: #fff8e1; border: 1px dashed #f0c040;
-      border-radius: 8px; padding: 10px 14px;
-      font-size: 0.78rem; color: #7a6000; margin-top: 8px;
-      display: none; /* hidden in final version, show during editing */
-    }
+    /* WHY */
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(230px,1fr)); gap: 24px; }
+    .why-card { border: 1.5px solid var(--border); border-radius: 16px; padding: 30px 24px; text-align: center; transition: border-color .2s, box-shadow .2s, transform .2s; }
+    .why-card:hover { border-color: var(--teal); box-shadow: 0 6px 20px rgba(42,122,114,.12); transform: translateY(-3px); }
+    .why-icon { font-size: 2.4rem; margin-bottom: 14px; }
+    .why-card h4 { font-size: 1rem; font-weight: 900; margin-bottom: 8px; }
+    .why-card p { font-size: .87rem; color: var(--muted); line-height: 1.6; }
 
-    /* ── WHY US ── */
-    .why-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px;
-    }
-    .why-card {
-      border: 1px solid var(--border); border-radius: 14px;
-      padding: 28px 22px; text-align: center;
-      transition: border-color .2s, box-shadow .2s;
-    }
-    .why-card:hover { border-color: var(--teal); box-shadow: 0 4px 16px rgba(42,122,114,0.1); }
-    .why-icon { font-size: 2.2rem; margin-bottom: 12px; }
-    .why-card h4 { font-size: 1rem; font-weight: 800; margin-bottom: 6px; }
-    .why-card p { font-size: 0.88rem; color: var(--muted); }
-
-    /* ── CONTACT ── */
-    #contact { background: var(--teal); color: var(--white); text-align: center; }
+    /* CONTACT */
+    #contact { background: linear-gradient(135deg, var(--teal-dark), var(--teal)); color: var(--white); text-align: center; }
+    #contact .section-label { background: rgba(255,255,255,.2); color: #fff; }
     #contact h2 { color: var(--white); }
-    #contact .sub { color: rgba(255,255,255,0.8); }
-    .contact-cards {
-      display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 10px;
-    }
-    .contact-card {
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 14px; padding: 22px 30px;
-      min-width: 180px; text-align: center;
-      text-decoration: none; color: var(--white);
-      transition: background .2s;
-    }
-    .contact-card:hover { background: rgba(255,255,255,0.2); }
-    .contact-card .icon { font-size: 1.8rem; margin-bottom: 8px; }
-    .contact-card .ctitle { font-weight: 700; font-size: 0.85rem; opacity: 0.8; margin-bottom: 4px; }
-    .contact-card .cval { font-weight: 800; font-size: 1rem; }
+    #contact .sub { color: rgba(255,255,255,.8); margin: 0 auto 40px; }
+    .contact-cards { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+    .contact-card { background: rgba(255,255,255,.12); border: 1.5px solid rgba(255,255,255,.25); border-radius: 16px; padding: 24px 32px; min-width: 190px; text-align: center; text-decoration: none; color: var(--white); transition: background .2s, transform .2s; }
+    .contact-card:hover { background: rgba(255,255,255,.22); transform: translateY(-3px); }
+    .contact-card .icon { font-size: 2rem; margin-bottom: 10px; }
+    .contact-card .ctitle { font-weight: 700; font-size: .82rem; opacity: .8; margin-bottom: 6px; }
+    .contact-card .cval { font-weight: 900; font-size: 1rem; direction: ltr; }
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--teal-dark); color: rgba(255,255,255,0.7);
-      text-align: center; padding: 24px 5%;
-      font-size: 0.85rem;
-    }
-    footer span { color: var(--white); font-weight: 700; }
+    /* FOOTER */
+    footer { background: var(--teal-dark); color: rgba(255,255,255,.65); text-align: center; padding: 28px 5%; font-size: .85rem; }
+    footer span { color: var(--white); font-weight: 800; }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
       .nav-links { display: none; }
-      .hero { padding: 60px 5%; }
-      .hero-badge { display: none; }
+      .hero { padding: 70px 5%; }
+      .hero-stats { flex-direction: row; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ============================================================
+     🖼️  اللوجو — الصورة محطوطة من Google Drive
+     ============================================================ -->
 <nav>
   <a class="nav-logo" href="#">
-    <!-- ===== ضع رابط صورة اللوجو من Google Drive هنا ===== -->
-    <!-- مثال: <img src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" alt="Lynka Logo"> -->
-    <img src="https://via.placeholder.com/44x44/2A7A72/FFFFFF?text=L" alt="Lynka Logo"/>
-    <span>LYNKA</span>
+    <img src="https://drive.google.com/uc?export=view&id=1LfheayPSOMw1gv7CgqwzWLhD6haY2lBO" alt="Lynka Logo"/>
   </a>
   <ul class="nav-links">
     <li><a href="#products">المنتجات</a></li>
@@ -226,58 +125,73 @@
   <a href="#contact" class="nav-cta">اطلب الآن</a>
 </nav>
 
-<!-- HERO -->
+
+<!-- ============================================================
+     ✏️  النص الرئيسي — عدّل الكلام هنا لو عايز
+     ============================================================ -->
 <section class="hero">
   <div class="hero-text">
     <div class="hero-tag">🏥 توريدات طبية متخصصة</div>
     <h1>جودة طبية<br/>تثق بها <span>Lynka</span></h1>
-    <p>نوفر أفضل الأربطة والمستلزمات الطبية للمستشفيات والعيادات والصيدليات في مصر.</p>
+    <p>نوفر أفضل الأربطة والمستلزمات الطبية للمستشفيات والعيادات والصيدليات — منتجات متخصصة بأعلى معايير الجودة الدولية.</p>
     <div class="hero-btns">
       <a href="#products" class="btn-white">تصفح المنتجات</a>
       <a href="#contact" class="btn-outline">تواصل معنا</a>
     </div>
   </div>
-  <div class="hero-badge">
-    <div class="num">4+</div>
-    <div class="label">منتجات طبية<br/>متخصصة</div>
+  <div class="hero-stats">
+    <div class="stat-box"><div class="num">4</div><div class="lbl">منتجات طبية متخصصة</div></div>
+    <div class="stat-box"><div class="num">100%</div><div class="lbl">جودة معتمدة</div></div>
   </div>
 </section>
 
-<!-- PRODUCTS -->
-<section id="products">
-  <div class="section-label">منتجاتنا</div>
-  <h2>الأربطة الطبية</h2>
-  <p class="sub">جميع منتجاتنا تلتزم بأعلى معايير الجودة الطبية</p>
 
+<!-- ============================================================
+     📦  المنتجات — الصور من Google Drive والأوصاف دقيقة
+     ============================================================ -->
+<section id="products">
+  <div class="section-header">
+    <div class="section-label">منتجاتنا</div>
+    <h2>الأربطة الطبية المتخصصة</h2>
+    <p class="sub">منتجات طبية متخصصة تلبي احتياجات العناية بالجروح وعلاج الوذمة وإدارة الإصابات</p>
+  </div>
   <div class="products-grid">
 
     <!-- FLEXIMOLL -->
     <div class="product-card">
       <div class="product-img">
-        <!-- ===== لإضافة صورة من Google Drive =====
-             1. افتح الصورة في Drive
-             2. Share → Anyone with the link → Copy link
-             3. خد الـ ID من الرابط (الجزء بعد /d/ وقبل /view)
-             4. حط الرابط ده: https://drive.google.com/uc?export=view&id=YOUR_ID
-             ========================================= -->
-        <img src="https://via.placeholder.com/400x200/E8F4F3/2A7A72?text=Fleximoll" alt="Fleximoll"/>
+        <img src="https://drive.google.com/uc?export=view&id=1OI7fL5DN8fi47mrsmgj6NXSrKnqdqjPE" alt="Fleximoll"/>
       </div>
       <div class="product-body">
-        <span class="product-tag">رباط مرن</span>
+        <span class="product-tag">رباط تثبيت مرن</span>
         <h3>Fleximoll</h3>
-        <p>رباط طبي مرن عالي الجودة، مريح على الجلد ومناسب للاستخدام اليومي والرياضي.</p>
+        <p>رباط شاش مرن مفتوح النسيج، يتشكّل بسهولة حول جميع أجزاء الجسم بما فيها المفاصل. مسامي وخالٍ من اللاتكس، مريح على الجلد ولا يترك تجاعيد عند الحركة.</p>
+        <div class="product-uses">
+          <div class="uses-title">الاستخدامات:</div>
+          <div class="use-item">تثبيت الضمادات على الجروح</div>
+          <div class="use-item">ضمادات الأصابع واليدين في علاج الوذمة اللمفية</div>
+          <div class="use-item">تثبيت فوم الحشو تحت الأربطة</div>
+          <div class="use-item">ضغط خفيف على المناطق الحساسة</div>
+        </div>
       </div>
     </div>
 
     <!-- TUBISOFT -->
     <div class="product-card">
       <div class="product-img">
-        <img src="https://via.placeholder.com/400x200/E8F4F3/2A7A72?text=Tubisoft" alt="Tubisoft"/>
+        <img src="https://drive.google.com/uc?export=view&id=1WbnhlA2LkdHjtomGio7kWUYrl8nqDOzB" alt="Tubisoft"/>
       </div>
       <div class="product-body">
         <span class="product-tag">رباط أنبوبي ناعم</span>
         <h3>Tubisoft</h3>
-        <p>رباط أنبوبي ناعم ومريح، مثالي لحماية الجلد الحساس وتثبيت الضمادات.</p>
+        <p>رباط أنبوبي سلس الحياكة خفيف الوزن ومسامي، يمتص العرق ويحمي الجلد. يتمدد حتى أربعة أضعاف عرضه الأصلي ليناسب مختلف أحجام الأطراف، ويمكن تعقيمه وإعادة استخدامه.</p>
+        <div class="product-uses">
+          <div class="uses-title">الاستخدامات:</div>
+          <div class="use-item">الطبقة الأولى في ضمادات الضغط متعددة الطبقات</div>
+          <div class="use-item">حماية الجلد وامتصاص الرطوبة</div>
+          <div class="use-item">تغليف فوم الحشو وتثبيت ضمادات الزنك</div>
+          <div class="use-item">مناسب للاستخدام من الرأس حتى القدمين</div>
+        </div>
         <div class="product-sizes">
           <span class="size-badge">8 cm</span>
           <span class="size-badge">12 cm</span>
@@ -288,12 +202,19 @@
     <!-- TUBICOMFORT -->
     <div class="product-card">
       <div class="product-img">
-        <img src="https://via.placeholder.com/400x200/E8F4F3/2A7A72?text=Tubicomfort" alt="Tubicomfort"/>
+        <img src="https://drive.google.com/uc?export=view&id=1JrKqzF4G-fVRMBZT-PoyxIhT1HDpTosA" alt="Tubicomfort"/>
       </div>
       <div class="product-body">
-        <span class="product-tag">رباط أنبوبي مريح</span>
+        <span class="product-tag">رباط أنبوبي داعم</span>
         <h3>Tubicomfort</h3>
-        <p>رباط أنبوبي بتقنية Comfort للراحة القصوى، يوفر ضغطاً منتظماً ودعماً فعالاً.</p>
+        <p>رباط أنبوبي مرن سلس الحياكة يوفر ضغطاً خفيفاً ومتوازناً على الأنسجة. يتكيّف مع تشكّل الجسم دون انزلاق، ولا يحتاج إلى دبابيس أو لاصقات عند التركيب أو الخلع.</p>
+        <div class="product-uses">
+          <div class="uses-title">الاستخدامات:</div>
+          <div class="use-item">علاج الالتواءات والإصابات وإصابات الأنسجة الرخوة</div>
+          <div class="use-item">دعم الأربطة والأوتار والمفاصل</div>
+          <div class="use-item">الطبقة الأولى في ضمادات علاج الوذمة اللمفية</div>
+          <div class="use-item">تثبيت الضمادات مع إتاحة حرية الحركة</div>
+        </div>
         <div class="product-sizes">
           <span class="size-badge">8 cm</span>
           <span class="size-badge">12 cm</span>
@@ -304,73 +225,119 @@
     <!-- DERMAFOAM -->
     <div class="product-card">
       <div class="product-img">
-        <img src="https://via.placeholder.com/400x200/E8F4F3/2A7A72?text=Dermafoam" alt="Dermafoam"/>
+        <img src="https://drive.google.com/uc?export=view&id=1Dy5J338ovZJyWyVODsFVCpI4E3TzEsOW" alt="Dermafoam"/>
       </div>
       <div class="product-body">
-        <span class="product-tag">رغوة جلدية</span>
+        <span class="product-tag">فوم ضغط طبي</span>
         <h3>Dermafoam</h3>
-        <p>رغوة طبية متخصصة لحماية الجلد والعناية به، تستخدم تحت الأربطة والجبائر.</p>
+        <p>فوم طبي متخصص يُوضع فوق طبقة الرباط الأنبوبي في نظام الضمادات متعددة الطبقات. يعمل على توزيع ضغط الأربطة بالتساوي، ويحمي المناطق العظمية والجلد من الضغط المتمركز والتهيّج.</p>
+        <div class="product-uses">
+          <div class="uses-title">الاستخدامات:</div>
+          <div class="use-item">الطبقة الحشو في علاج الوذمة اللمفية</div>
+          <div class="use-item">توزيع ضغط أربطة الضغط القصيرة بالتساوي</div>
+          <div class="use-item">حماية النتوءات العظمية من الإصابة</div>
+          <div class="use-item">تليين الأنسجة المتصلّبة والمتليّفة</div>
+        </div>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- WHY US -->
+
+<!-- WHY -->
 <section id="why">
-  <div class="section-label">لماذا Lynka</div>
-  <h2>شريكك الموثوق في التوريدات الطبية</h2>
-  <p class="sub">نلتزم بتقديم أفضل المنتجات بأعلى معايير الجودة</p>
+  <div class="section-header">
+    <div class="section-label">لماذا Lynka</div>
+    <h2>شريكك الموثوق في التوريدات الطبية</h2>
+    <p class="sub">نلتزم بتقديم منتجات طبية متخصصة بأعلى معايير الجودة لخدمة القطاع الصحي</p>
+  </div>
   <div class="why-grid">
     <div class="why-card">
       <div class="why-icon">✅</div>
-      <h4>جودة معتمدة</h4>
-      <p>جميع منتجاتنا تلتزم بالمعايير الطبية الدولية</p>
+      <h4>منتجات معتمدة</h4>
+      <p>جميع منتجاتنا تلتزم بالمعايير الطبية الدولية وتخضع لرقابة جودة صارمة</p>
     </div>
     <div class="why-card">
       <div class="why-icon">🚚</div>
-      <h4>توصيل سريع</h4>
-      <p>نضمن توصيل طلباتك في أسرع وقت ممكن</p>
+      <h4>توصيل سريع وموثوق</h4>
+      <p>نضمن توصيل طلباتك في أسرع وقت ممكن لضمان استمرارية عمل مرافقك الصحية</p>
     </div>
     <div class="why-card">
       <div class="why-icon">🤝</div>
-      <h4>خدمة احترافية</h4>
-      <p>فريق متخصص لدعمك والإجابة على استفساراتك</p>
+      <h4>دعم متخصص</h4>
+      <p>فريقنا على دراية كاملة بالمنتجات ومستعد للإجابة على جميع استفساراتك الفنية</p>
     </div>
     <div class="why-card">
       <div class="why-icon">💰</div>
       <h4>أسعار تنافسية</h4>
-      <p>أفضل جودة بأسعار مناسبة لجميع الميزانيات</p>
+      <p>نوفر أفضل جودة بأسعار مناسبة للمستشفيات والعيادات والصيدليات على حد سواء</p>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
+
+<!-- ============================================================
+     📞  بيانات التواصل
+     ============================================================
+
+     📱  رقم التليفون:
+         السطر أسفله — غيّر الرقم في href="tel:+20XXXXXXXXXX"
+         وغيّر النص داخل <div class="cval"> بالرقم كما يظهر للزائر
+
+     💬  رقم الواتساب:
+         السطر أسفله — غيّر الرقم في href="https://wa.me/20XXXXXXXXXX"
+
+     ✉️  الإيميل:
+         السطر أسفله — غيّر العنوان في href="mailto:" وفي النص
+
+     📍  العنوان:
+         السطر أسفله — اكتب العنوان داخل <div class="cval">
+
+     ============================================================ -->
 <section id="contact">
-  <div class="section-label" style="background:rgba(255,255,255,0.2);color:#fff;">تواصل معنا</div>
-  <h2>نحن هنا لخدمتك</h2>
-  <p class="sub">تواصل معنا لطلب المنتجات أو الاستفسار عن الأسعار</p>
+  <div class="section-header">
+    <div class="section-label">تواصل معنا</div>
+    <h2>نحن هنا لخدمتك</h2>
+    <p class="sub">تواصل معنا لطلب المنتجات أو الاستفسار عن الأسعار والتوافر</p>
+  </div>
   <div class="contact-cards">
-    <!-- ===== غيّر الأرقام والإيميل بتاعتك هنا ===== -->
-    <a href="tel:+201000000000" class="contact-card">
+
+    <!-- ←←← غيّر رقم التليفون هنا -->
+    <a href="tel:+20XXXXXXXXXX" class="contact-card">
       <div class="icon">📞</div>
       <div class="ctitle">اتصل بنا</div>
-      <div class="cval">01000000000+</div>
+      <div class="cval">اكتب رقمك هنا</div>
     </a>
-    <a href="https://wa.me/201000000000" class="contact-card" target="_blank">
+
+    <!-- ←←← غيّر رقم الواتساب في الرابط هنا -->
+    <a href="https://wa.me/20XXXXXXXXXX" class="contact-card" target="_blank">
       <div class="icon">💬</div>
       <div class="ctitle">واتساب</div>
       <div class="cval">راسلنا الآن</div>
     </a>
+
+    <!-- ←←← غيّر الإيميل هنا -->
     <a href="mailto:info@lynka-med.com" class="contact-card">
       <div class="icon">✉️</div>
       <div class="ctitle">إيميل</div>
       <div class="cval">info@lynka-med.com</div>
     </a>
+
+    <!-- ←←← اكتب العنوان هنا -->
+    <div class="contact-card">
+      <div class="icon">📍</div>
+      <div class="ctitle">العنوان</div>
+      <div class="cval">اكتب عنوانك هنا</div>
+    </div>
+
   </div>
 </section>
 
-<!-- FOOTER -->
+
+<!-- ============================================================
+     📝  الفوتر — غيّر السنة أو اسم الشركة لو احتجت
+     ============================================================ -->
 <footer>
   <p>© 2025 <span>LYNKA</span> للتوريدات الطبية — جميع الحقوق محفوظة</p>
 </footer>
