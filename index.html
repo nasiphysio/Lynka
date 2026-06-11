@@ -4,7 +4,19 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lynka – للتوريدات الطبية</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Lynka للتوريدات الطبية — Fleximoll، Tubisoft، Tubicomfort، Dermafoam. أربطة طبية متخصصة للمستشفيات والعيادات والصيدليات في مصر."/>
+  <meta name="keywords" content="مستلزمات طبية, أربطة طبية, وذمة لمفية, Fleximoll, Tubisoft, Tubicomfort, Dermafoam, Lynka, توريدات طبية"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Lynka – للتوريدات الطبية"/>
+  <meta property="og:description" content="أربطة طبية متخصصة للمستشفيات والعيادات والصيدليات في مصر"/>
+  <meta property="og:image" content="https://lh3.googleusercontent.com/d/1LfheayPSOMw1gv7CgqwzWLhD6haY2lBO"/>
+  <meta property="og:type" content="website"/>
+
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -12,6 +24,10 @@
       --teal-mid: #3D9E95; --white: #FFFFFF; --text: #1A2E2D;
       --muted: #6B8C8A; --border: #C8E0DE;
     }
+
+    /* Smooth Scroll */
+    html { scroll-behavior: smooth; }
+
     body { font-family: 'Cairo', sans-serif; background: var(--white); color: var(--text); line-height: 1.7; }
 
     /* NAV */
@@ -46,13 +62,15 @@
     .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.15); }
     .btn-outline { border: 2px solid rgba(255,255,255,.7); color: var(--white); padding: 13px 30px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: .95rem; transition: background .2s; }
     .btn-outline:hover { background: rgba(255,255,255,.12); }
-    .hero-stats { display: flex; flex-direction: column; gap: 16px; }
-    .stat-box { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); border-radius: 14px; padding: 20px 28px; text-align: center; min-width: 160px; }
-    .stat-box .num { font-size: 2.4rem; font-weight: 900; line-height: 1; }
-    .stat-box .lbl { font-size: .82rem; opacity: .85; margin-top: 4px; }
 
-    /* SECTIONS */
-    section { padding: 80px 5%; }
+    .hero-stats { display: flex; flex-direction: column; gap: 16px; }
+    .stat-box { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); border-radius: 14px; padding: 20px 28px; text-align: center; min-width: 165px; }
+    .stat-box .num { font-size: 2.2rem; font-weight: 900; line-height: 1; }
+    .stat-box .lbl { font-size: .82rem; opacity: .85; margin-top: 5px; line-height: 1.4; }
+
+    /* Scroll margin for sticky nav */
+    section { padding: 80px 5%; scroll-margin-top: 90px; }
+
     .section-header { margin-bottom: 48px; }
     .section-label { display: inline-block; background: var(--teal-light); color: var(--teal); padding: 5px 16px; border-radius: 20px; font-size: .8rem; font-weight: 800; margin-bottom: 12px; }
     h2 { font-size: clamp(1.7rem,3vw,2.3rem); font-weight: 900; color: var(--text); margin-bottom: 12px; }
@@ -61,21 +79,32 @@
     /* PRODUCTS */
     #products { background: #F4FAFA; }
     .products-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap: 28px; }
-    .product-card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 2px 16px rgba(42,122,114,.08); transition: transform .28s, box-shadow .28s; border: 1px solid var(--border); }
+    .product-card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 2px 16px rgba(42,122,114,.08); transition: transform .28s, box-shadow .28s; border: 1px solid var(--border); display: flex; flex-direction: column; }
     .product-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(42,122,114,.16); }
     .product-img { width: 100%; height: 220px; overflow: hidden; background: var(--teal-light); }
     .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
     .product-card:hover .product-img img { transform: scale(1.04); }
-    .product-body { padding: 24px; }
+    .product-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
     .product-tag { font-size: .73rem; font-weight: 800; color: var(--teal); background: var(--teal-light); padding: 4px 12px; border-radius: 10px; display: inline-block; margin-bottom: 10px; }
     .product-body h3 { font-size: 1.25rem; font-weight: 900; margin-bottom: 10px; color: var(--text); }
     .product-body p { font-size: .88rem; color: var(--muted); margin-bottom: 16px; line-height: 1.75; }
-    .product-uses { margin-bottom: 14px; }
+    .product-uses { margin-bottom: 16px; flex: 1; }
     .product-uses .uses-title { font-size: .78rem; font-weight: 800; color: var(--teal-dark); margin-bottom: 6px; }
-    .use-item { font-size: .8rem; color: var(--muted); padding: 2px 0 2px 14px; position: relative; line-height: 1.6; }
+    .use-item { font-size: .8rem; color: var(--muted); padding: 2px 16px 2px 0; position: relative; line-height: 1.6; }
     .use-item::before { content: '•'; color: var(--teal); position: absolute; right: 0; font-weight: 900; }
-    .product-sizes { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+    .product-sizes { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
     .size-badge { background: var(--teal-light); color: var(--teal-dark); padding: 4px 14px; border-radius: 12px; font-size: .78rem; font-weight: 800; border: 1px solid var(--border); }
+
+    /* Product CTA button */
+    .product-btn {
+      display: block; text-align: center;
+      background: var(--teal); color: var(--white);
+      padding: 11px 20px; border-radius: 12px;
+      text-decoration: none; font-weight: 700; font-size: .88rem;
+      transition: background .2s, transform .2s;
+      margin-top: auto;
+    }
+    .product-btn:hover { background: var(--teal-dark); transform: translateY(-1px); }
 
     /* WHY */
     .why-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(230px,1fr)); gap: 24px; }
@@ -96,6 +125,7 @@
     .contact-card .icon { font-size: 2rem; margin-bottom: 10px; }
     .contact-card .ctitle { font-weight: 700; font-size: .82rem; opacity: .8; margin-bottom: 6px; }
     .contact-card .cval { font-weight: 900; font-size: 1rem; direction: ltr; }
+    .contact-card .cval.address { direction: rtl; }
 
     /* FOOTER */
     footer { background: var(--teal-dark); color: rgba(255,255,255,.65); text-align: center; padding: 28px 5%; font-size: .85rem; }
@@ -104,18 +134,18 @@
     @media (max-width: 640px) {
       .nav-links { display: none; }
       .hero { padding: 70px 5%; }
-      .hero-stats { flex-direction: row; }
+      .hero-stats { flex-direction: row; flex-wrap: wrap; }
     }
   </style>
 </head>
 <body>
 
 <!-- ============================================================
-     🖼️  اللوجو — الصورة محطوطة من Google Drive
+     🖼️  اللوجو — الصورة من Google Drive
      ============================================================ -->
 <nav>
   <a class="nav-logo" href="#">
-    <img src="https://lh3.googleusercontent.com/d/1LfheayPSOMw1gv7CgqwzWLhD6haY2lBO" alt="Lynka Logo"/>
+    <img loading="lazy" src="https://lh3.googleusercontent.com/d/1LfheayPSOMw1gv7CgqwzWLhD6haY2lBO" alt="Lynka Logo"/>
   </a>
   <ul class="nav-links">
     <li><a href="#products">المنتجات</a></li>
@@ -140,14 +170,20 @@
     </div>
   </div>
   <div class="hero-stats">
-    <div class="stat-box"><div class="num">4</div><div class="lbl">منتجات طبية متخصصة</div></div>
-    <div class="stat-box"><div class="num">100%</div><div class="lbl">جودة معتمدة</div></div>
+    <div class="stat-box">
+      <div class="num">24/7</div>
+      <div class="lbl">دعم واستجابة فورية</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">100%</div>
+      <div class="lbl">جودة طبية معتمدة</div>
+    </div>
   </div>
 </section>
 
 
 <!-- ============================================================
-     📦  المنتجات — الصور من Google Drive والأوصاف دقيقة
+     📦  المنتجات
      ============================================================ -->
 <section id="products">
   <div class="section-header">
@@ -160,7 +196,7 @@
     <!-- FLEXIMOLL -->
     <div class="product-card">
       <div class="product-img">
-        <img src="https://lh3.googleusercontent.com/d/1OI7fL5DN8fi47mrsmgj6NXSrKnqdqjPE" alt="Fleximoll"/>
+        <img loading="lazy" src="https://lh3.googleusercontent.com/d/1OI7fL5DN8fi47mrsmgj6NXSrKnqdqjPE" alt="Fleximoll"/>
       </div>
       <div class="product-body">
         <span class="product-tag">رباط تثبيت مرن</span>
@@ -169,22 +205,24 @@
         <div class="product-uses">
           <div class="uses-title">الاستخدامات:</div>
           <div class="use-item">تثبيت الضمادات على الجروح</div>
-          <div class="use-item">ضمادات الأصابع واليدين في علاج الوذمة اللمفية</div>
+          <div class="use-item">ضمادات الأصابع في علاج الوذمة اللمفية</div>
           <div class="use-item">تثبيت فوم الحشو تحت الأربطة</div>
           <div class="use-item">ضغط خفيف على المناطق الحساسة</div>
         </div>
+        <!-- ←←← غيّر رقم الواتساب هنا -->
+        <a href="https://wa.me/20XXXXXXXXXX?text=استفسار عن Fleximoll" class="product-btn">💬 استفسر الآن</a>
       </div>
     </div>
 
     <!-- TUBISOFT -->
     <div class="product-card">
       <div class="product-img">
-        <img src="https://lh3.googleusercontent.com/d/1WbnhlA2LkdHjtomGio7kWUYrl8nqDOzB" alt="Tubisoft"/>
+        <img loading="lazy" src="https://lh3.googleusercontent.com/d/1WbnhlA2LkdHjtomGio7kWUYrl8nqDOzB" alt="Tubisoft"/>
       </div>
       <div class="product-body">
         <span class="product-tag">رباط أنبوبي ناعم</span>
         <h3>Tubisoft</h3>
-        <p>رباط أنبوبي سلس الحياكة خفيف الوزن ومسامي، يمتص العرق ويحمي الجلد. يتمدد حتى أربعة أضعاف عرضه الأصلي ليناسب مختلف أحجام الأطراف، ويمكن تعقيمه وإعادة استخدامه.</p>
+        <p>رباط أنبوبي سلس الحياكة خفيف الوزن ومسامي، يمتص العرق ويحمي الجلد. يتمدد حتى أربعة أضعاف عرضه الأصلي ويمكن تعقيمه وإعادة استخدامه.</p>
         <div class="product-uses">
           <div class="uses-title">الاستخدامات:</div>
           <div class="use-item">الطبقة الأولى في ضمادات الضغط متعددة الطبقات</div>
@@ -196,48 +234,54 @@
           <span class="size-badge">8 cm</span>
           <span class="size-badge">12 cm</span>
         </div>
+        <!-- ←←← غيّر رقم الواتساب هنا -->
+        <a href="https://wa.me/20XXXXXXXXXX?text=استفسار عن Tubisoft" class="product-btn">💬 استفسر الآن</a>
       </div>
     </div>
 
     <!-- TUBICOMFORT -->
     <div class="product-card">
       <div class="product-img">
-        <img src="https://lh3.googleusercontent.com/d/1JrKqzF4G-fVRMBZT-PoyxIhT1HDpTosA" alt="Tubicomfort"/>
+        <img loading="lazy" src="https://lh3.googleusercontent.com/d/1JrKqzF4G-fVRMBZT-PoyxIhT1HDpTosA" alt="Tubicomfort"/>
       </div>
       <div class="product-body">
         <span class="product-tag">رباط أنبوبي داعم</span>
         <h3>Tubicomfort</h3>
-        <p>رباط أنبوبي مرن سلس الحياكة يوفر ضغطاً خفيفاً ومتوازناً على الأنسجة. يتكيّف مع تشكّل الجسم دون انزلاق، ولا يحتاج إلى دبابيس أو لاصقات عند التركيب أو الخلع.</p>
+        <p>رباط أنبوبي مرن سلس الحياكة يوفر ضغطاً خفيفاً ومتوازناً. يتكيّف مع تشكّل الجسم دون انزلاق ولا يحتاج إلى دبابيس أو لاصقات.</p>
         <div class="product-uses">
           <div class="uses-title">الاستخدامات:</div>
-          <div class="use-item">علاج الالتواءات والإصابات وإصابات الأنسجة الرخوة</div>
+          <div class="use-item">علاج الالتواءات وإصابات الأنسجة الرخوة</div>
           <div class="use-item">دعم الأربطة والأوتار والمفاصل</div>
-          <div class="use-item">الطبقة الأولى في ضمادات علاج الوذمة اللمفية</div>
+          <div class="use-item">الطبقة الأولى في ضمادات الوذمة اللمفية</div>
           <div class="use-item">تثبيت الضمادات مع إتاحة حرية الحركة</div>
         </div>
         <div class="product-sizes">
           <span class="size-badge">8 cm</span>
           <span class="size-badge">12 cm</span>
         </div>
+        <!-- ←←← غيّر رقم الواتساب هنا -->
+        <a href="https://wa.me/20XXXXXXXXXX?text=استفسار عن Tubicomfort" class="product-btn">💬 استفسر الآن</a>
       </div>
     </div>
 
     <!-- DERMAFOAM -->
     <div class="product-card">
       <div class="product-img">
-        <img src="https://lh3.googleusercontent.com/d/1Dy5J338ovZJyWyVODsFVCpI4E3TzEsOW" alt="Dermafoam"/>
+        <img loading="lazy" src="https://lh3.googleusercontent.com/d/1Dy5J338ovZJyWyVODsFVCpI4E3TzEsOW" alt="Dermafoam"/>
       </div>
       <div class="product-body">
         <span class="product-tag">فوم ضغط طبي</span>
         <h3>Dermafoam</h3>
-        <p>فوم طبي متخصص يُوضع فوق طبقة الرباط الأنبوبي في نظام الضمادات متعددة الطبقات. يعمل على توزيع ضغط الأربطة بالتساوي، ويحمي المناطق العظمية والجلد من الضغط المتمركز والتهيّج.</p>
+        <p>فوم طبي متخصص يُوضع فوق طبقة الرباط الأنبوبي في ضمادات الضغط متعددة الطبقات. يوزع الضغط بالتساوي ويحمي المناطق العظمية من التهيّج.</p>
         <div class="product-uses">
           <div class="uses-title">الاستخدامات:</div>
-          <div class="use-item">الطبقة الحشو في علاج الوذمة اللمفية</div>
-          <div class="use-item">توزيع ضغط أربطة الضغط القصيرة بالتساوي</div>
+          <div class="use-item">طبقة الحشو في علاج الوذمة اللمفية</div>
+          <div class="use-item">توزيع ضغط أربطة الضغط بالتساوي</div>
           <div class="use-item">حماية النتوءات العظمية من الإصابة</div>
           <div class="use-item">تليين الأنسجة المتصلّبة والمتليّفة</div>
         </div>
+        <!-- ←←← غيّر رقم الواتساب هنا -->
+        <a href="https://wa.me/20XXXXXXXXXX?text=استفسار عن Dermafoam" class="product-btn">💬 استفسر الآن</a>
       </div>
     </div>
 
@@ -253,26 +297,10 @@
     <p class="sub">نلتزم بتقديم منتجات طبية متخصصة بأعلى معايير الجودة لخدمة القطاع الصحي</p>
   </div>
   <div class="why-grid">
-    <div class="why-card">
-      <div class="why-icon">✅</div>
-      <h4>منتجات معتمدة</h4>
-      <p>جميع منتجاتنا تلتزم بالمعايير الطبية الدولية وتخضع لرقابة جودة صارمة</p>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">🚚</div>
-      <h4>توصيل سريع وموثوق</h4>
-      <p>نضمن توصيل طلباتك في أسرع وقت ممكن لضمان استمرارية عمل مرافقك الصحية</p>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">🤝</div>
-      <h4>دعم متخصص</h4>
-      <p>فريقنا على دراية كاملة بالمنتجات ومستعد للإجابة على جميع استفساراتك الفنية</p>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">💰</div>
-      <h4>أسعار تنافسية</h4>
-      <p>نوفر أفضل جودة بأسعار مناسبة للمستشفيات والعيادات والصيدليات على حد سواء</p>
-    </div>
+    <div class="why-card"><div class="why-icon">✅</div><h4>منتجات معتمدة</h4><p>جميع منتجاتنا تلتزم بالمعايير الطبية الدولية وتخضع لرقابة جودة صارمة</p></div>
+    <div class="why-card"><div class="why-icon">🚚</div><h4>توصيل سريع وموثوق</h4><p>نضمن توصيل طلباتك في أسرع وقت ممكن لضمان استمرارية عمل مرافقك الصحية</p></div>
+    <div class="why-card"><div class="why-icon">🤝</div><h4>دعم متخصص</h4><p>فريقنا على دراية كاملة بالمنتجات ومستعد للإجابة على جميع استفساراتك الفنية</p></div>
+    <div class="why-card"><div class="why-icon">💰</div><h4>أسعار تنافسية</h4><p>نوفر أفضل جودة بأسعار مناسبة للمستشفيات والعيادات والصيدليات على حد سواء</p></div>
   </div>
 </section>
 
@@ -280,20 +308,10 @@
 <!-- ============================================================
      📞  بيانات التواصل
      ============================================================
-
-     📱  رقم التليفون:
-         السطر أسفله — غيّر الرقم في href="tel:+20XXXXXXXXXX"
-         وغيّر النص داخل <div class="cval"> بالرقم كما يظهر للزائر
-
-     💬  رقم الواتساب:
-         السطر أسفله — غيّر الرقم في href="https://wa.me/20XXXXXXXXXX"
-
-     ✉️  الإيميل:
-         السطر أسفله — غيّر العنوان في href="mailto:" وفي النص
-
-     📍  العنوان:
-         السطر أسفله — اكتب العنوان داخل <div class="cval">
-
+     📱  رقم التليفون  ←  غيّر +20XXXXXXXXXX في href وفي النص
+     💬  رقم الواتساب  ←  غيّر 20XXXXXXXXXX في href
+     ✉️  الإيميل        ←  غيّر info@lynka-med.com في href وفي النص
+     📍  العنوان        ←  اكتب العنوان داخل cval address
      ============================================================ -->
 <section id="contact">
   <div class="section-header">
@@ -303,32 +321,28 @@
   </div>
   <div class="contact-cards">
 
-    <!-- ←←← غيّر رقم التليفون هنا -->
     <a href="tel:+20XXXXXXXXXX" class="contact-card">
       <div class="icon">📞</div>
       <div class="ctitle">اتصل بنا</div>
       <div class="cval">اكتب رقمك هنا</div>
     </a>
 
-    <!-- ←←← غيّر رقم الواتساب في الرابط هنا -->
     <a href="https://wa.me/20XXXXXXXXXX" class="contact-card" target="_blank">
       <div class="icon">💬</div>
       <div class="ctitle">واتساب</div>
       <div class="cval">راسلنا الآن</div>
     </a>
 
-    <!-- ←←← غيّر الإيميل هنا -->
     <a href="mailto:info@lynka-med.com" class="contact-card">
       <div class="icon">✉️</div>
       <div class="ctitle">إيميل</div>
       <div class="cval">info@lynka-med.com</div>
     </a>
 
-    <!-- ←←← اكتب العنوان هنا -->
     <div class="contact-card">
       <div class="icon">📍</div>
       <div class="ctitle">العنوان</div>
-      <div class="cval">اكتب عنوانك هنا</div>
+      <div class="cval address">اكتب عنوانك هنا</div>
     </div>
 
   </div>
@@ -336,11 +350,15 @@
 
 
 <!-- ============================================================
-     📝  الفوتر — غيّر السنة أو اسم الشركة لو احتجت
+     📝  الفوتر
      ============================================================ -->
 <footer>
-  <p>© 2025 <span>LYNKA</span> للتوريدات الطبية — جميع الحقوق محفوظة</p>
+  <p>© <span id="year"></span> <span>LYNKA</span> للتوريدات الطبية — جميع الحقوق محفوظة</p>
 </footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
