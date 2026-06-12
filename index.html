@@ -34,9 +34,14 @@
     .nav-links { display: flex; gap: 28px; list-style: none; }
     .nav-links a { text-decoration: none; color: var(--text); font-weight: 600; font-size: .95rem; transition: color .2s; }
     .nav-links a:hover { color: var(--teal); }
-    .nav-right { display: flex; align-items: center; gap: 14px; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
     .nav-cta { background: var(--teal); color: var(--white); padding: 9px 24px; border-radius: 25px; text-decoration: none; font-weight: 700; font-size: .9rem; transition: background .2s, transform .2s; }
     .nav-cta:hover { background: var(--teal-dark); transform: translateY(-1px); }
+
+    /* SOCIAL NAV ICONS */
+    .nav-social { display: flex; align-items: center; gap: 8px; }
+    .nav-social a { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: var(--teal-light); color: var(--teal); border: 1.5px solid var(--border); transition: background .2s, color .2s; text-decoration: none; font-size: .95rem; }
+    .nav-social a:hover { background: var(--teal); color: var(--white); }
 
     /* LANGUAGE SWITCHER */
     .lang-btn {
@@ -48,27 +53,46 @@
     }
     .lang-btn:hover { background: var(--teal); color: var(--white); }
 
-    /* HERO */
-    .hero {
-      background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 55%, var(--teal-mid) 100%);
-      color: var(--white); padding: 100px 5% 90px;
-      display: flex; align-items: center; justify-content: space-between; gap: 48px; flex-wrap: wrap;
+    /* ── HERO SLIDER ── */
+    .hero-slider { position: relative; width: 100%; height: 92vh; min-height: 520px; overflow: hidden; }
+    .slide {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      opacity: 0; transition: opacity 1.2s ease; z-index: 0;
     }
-    .hero-text { max-width: 560px; }
+    .slide.active { opacity: 1; z-index: 1; }
+    .slide::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(30,92,86,.82) 0%, rgba(42,122,114,.65) 60%, rgba(61,158,149,.45) 100%);
+    }
+    .slide-content {
+      position: absolute; inset: 0; z-index: 2;
+      display: flex; align-items: center;
+      padding: 0 8%;
+    }
+    .slide-inner { max-width: 620px; color: var(--white); }
     .hero-tag { display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); padding: 6px 18px; border-radius: 20px; font-size: .85rem; font-weight: 700; margin-bottom: 22px; }
-    .hero h1 { font-size: clamp(2.2rem,4vw,3.2rem); font-weight: 900; line-height: 1.25; margin-bottom: 18px; }
-    .hero h1 span { color: #A8DDD9; }
-    .hero p { font-size: 1.05rem; opacity: .9; margin-bottom: 36px; max-width: 460px; line-height: 1.8; }
+    .slide-inner h1 { font-size: clamp(2.2rem,4.5vw,3.4rem); font-weight: 900; line-height: 1.2; margin-bottom: 18px; }
+    .slide-inner h1 span { color: #A8DDD9; }
+    .slide-inner p { font-size: 1.05rem; opacity: .92; margin-bottom: 36px; max-width: 480px; line-height: 1.8; }
     .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
     .btn-white { background: var(--white); color: var(--teal-dark); padding: 13px 30px; border-radius: 30px; text-decoration: none; font-weight: 800; font-size: .95rem; transition: transform .2s, box-shadow .2s; }
-    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.15); }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.18); }
     .btn-outline { border: 2px solid rgba(255,255,255,.7); color: var(--white); padding: 13px 30px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: .95rem; transition: background .2s; }
     .btn-outline:hover { background: rgba(255,255,255,.12); }
-    .hero-stats { display: flex; flex-direction: column; gap: 16px; }
-    .stat-box { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); border-radius: 14px; padding: 20px 28px; text-align: center; min-width: 165px; }
-    .stat-box .num { font-size: 2.2rem; font-weight: 900; line-height: 1; }
-    .stat-box .lbl { font-size: .82rem; opacity: .85; margin-top: 5px; line-height: 1.4; }
 
+    /* Slider dots */
+    .slider-dots { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; gap: 10px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.45); border: none; cursor: pointer; transition: background .3s, transform .3s; padding: 0; }
+    .dot.active { background: var(--white); transform: scale(1.25); }
+
+    /* Slider arrows */
+    .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(255,255,255,.18); border: none; color: var(--white); width: 46px; height: 46px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; transition: background .2s; display: flex; align-items: center; justify-content: center; }
+    .slider-arrow:hover { background: rgba(255,255,255,.32); }
+    .slider-arrow.prev { right: 20px; }
+    .slider-arrow.next { left: 20px; }
+
+    /* SECTIONS */
     section { padding: 80px 5%; scroll-margin-top: 90px; }
     .section-header { margin-bottom: 48px; }
     .section-label { display: inline-block; background: var(--teal-light); color: var(--teal); padding: 5px 16px; border-radius: 20px; font-size: .8rem; font-weight: 800; margin-bottom: 12px; }
@@ -98,12 +122,8 @@
     .product-btn { display: block; text-align: center; background: var(--teal); color: var(--white); padding: 11px 20px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: .88rem; transition: background .2s, transform .2s; margin-top: auto; }
     .product-btn:hover { background: var(--teal-dark); transform: translateY(-1px); }
 
-    /* IMAGE LIGHTBOX */
-    #lightbox {
-      display: none; position: fixed; inset: 0; z-index: 9999;
-      background: rgba(0,0,0,.88); align-items: center; justify-content: center;
-      cursor: zoom-out;
-    }
+    /* LIGHTBOX */
+    #lightbox { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,.88); align-items: center; justify-content: center; cursor: zoom-out; }
     #lightbox.open { display: flex; }
     #lightbox img { max-width: 90vw; max-height: 88vh; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,.5); object-fit: contain; }
     #lightbox-close { position: absolute; top: 20px; left: 24px; color: #fff; font-size: 2rem; cursor: pointer; background: rgba(255,255,255,.15); border: none; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; transition: background .2s; }
@@ -128,25 +148,37 @@
     .contact-card .icon { font-size: 2rem; margin-bottom: 10px; }
     .contact-card .ctitle { font-weight: 700; font-size: .82rem; opacity: .8; margin-bottom: 6px; }
     .contact-card .cval { font-weight: 900; font-size: 1rem; direction: ltr; }
-    .contact-card .cval.address { direction: rtl; }
 
+    /* FOOTER */
     footer { background: var(--teal-dark); color: rgba(255,255,255,.65); text-align: center; padding: 28px 5%; font-size: .85rem; }
     footer span { color: var(--white); font-weight: 800; }
+    .footer-social { display: flex; justify-content: center; gap: 14px; margin-bottom: 16px; }
+    .footer-social a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.12); color: rgba(255,255,255,.8); border: 1px solid rgba(255,255,255,.2); text-decoration: none; font-size: 1.1rem; transition: background .2s, color .2s; }
+    .footer-social a:hover { background: rgba(255,255,255,.25); color: var(--white); }
+
+    /* WHATSAPP FLOAT */
+    .wa-float { position: fixed; bottom: 28px; left: 28px; z-index: 999; background: #25D366; color: var(--white); width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,.45); transition: transform .2s, box-shadow .2s; }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,.6); }
 
     @media (max-width: 640px) {
       .nav-links { display: none; }
-      .hero { padding: 70px 5%; }
-      .hero-stats { flex-direction: row; flex-wrap: wrap; }
+      .hero-slider { height: 75vh; }
+      .slide-inner h1 { font-size: 1.9rem; }
+      .nav-social { display: none; }
     }
   </style>
 </head>
 <body>
 
+<!-- LIGHTBOX -->
 <div id="lightbox" onclick="closeLightbox(event)">
   <button id="lightbox-close" onclick="forceCloseLightbox()">✕</button>
   <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()"/>
 </div>
 
+<!-- ============================================================
+     NAV
+     ============================================================ -->
 <nav>
   <a class="nav-logo" href="#">
     <img loading="lazy" src="https://drive.google.com/thumbnail?id=1LfheayPSOMw1gv7CgqwzWLhD6haY2lBO&sz=w500" alt="Lynka Logo"/>
@@ -157,27 +189,83 @@
     <li><a href="#contact" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a></li>
   </ul>
   <div class="nav-right">
+    <!-- أيقونات السوشيال ميديا في الـ Nav -->
+    <div class="nav-social">
+      <a href="https://www.facebook.com/Lynka.egy" target="_blank" title="Facebook">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/lynka.egy/" target="_blank" title="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+    </div>
     <button class="lang-btn" onclick="toggleLang()" id="lang-btn">🌐 EN</button>
     <a href="#contact" class="nav-cta" data-ar="اطلب الآن" data-en="Order Now">اطلب الآن</a>
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-text">
-    <div class="hero-tag" data-ar="🏥 توريدات طبية متخصصة" data-en="🏥 Specialized Medical Supplies">🏥 توريدات طبية متخصصة</div>
-    <h1 data-ar="جودة طبية<br/>تثق بها <span>Lynka</span>" data-en="Medical Quality<br/>You Trust with <span>Lynka</span>">جودة طبية<br/>تثق بها <span>Lynka</span></h1>
-    <p data-ar="نوفر أفضل الأربطة والمستلزمات الطبية للمستشفيات والعيادات والصيدليات — منتجات متخصصة بأعلى معايير الجودة الدولية." data-en="We provide the finest medical bandages and supplies for hospitals, clinics, and pharmacies — specialized products meeting the highest international quality standards.">نوفر أفضل الأربطة والمستلزمات الطبية للمستشفيات والعيادات والصيدليات — منتجات متخصصة بأعلى معايير الجودة الدولية.</p>
-    <div class="hero-btns">
-      <a href="#products" class="btn-white" data-ar="تصفح المنتجات" data-en="Browse Products">تصفح المنتجات</a>
-      <a href="#contact" class="btn-outline" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a>
+
+<!-- ============================================================
+     HERO SLIDER
+     ============================================================
+     الصور: غيّر الـ IDs في data-id لكل slide
+     ============================================================ -->
+<div class="hero-slider" id="heroSlider">
+
+  <!-- Slide 1 -->
+  <div class="slide active" style="background-image: url('https://drive.google.com/thumbnail?id=1rWzBcjecpauWg1G9wdY8yIUb-DWZmqDq&sz=w1600')">
+    <div class="slide-content">
+      <div class="slide-inner">
+        <div class="hero-tag" data-ar="🏥 توريدات طبية متخصصة" data-en="🏥 Specialized Medical Supplies">🏥 توريدات طبية متخصصة</div>
+        <h1 data-ar="جودة طبية<br/>تثق بها <span>Lynka</span>" data-en="Medical Quality<br/>You Trust with <span>Lynka</span>">جودة طبية<br/>تثق بها <span>Lynka</span></h1>
+        <p data-ar="نوفر أفضل الأربطة والمستلزمات الطبية للمستشفيات والعيادات والصيدليات — منتجات متخصصة بأعلى معايير الجودة الدولية." data-en="We provide the finest medical bandages and supplies for hospitals, clinics, and pharmacies — specialized products meeting the highest international quality standards.">نوفر أفضل الأربطة والمستلزمات الطبية للمستشفيات والعيادات والصيدليات — منتجات متخصصة بأعلى معايير الجودة الدولية.</p>
+        <div class="hero-btns">
+          <a href="#products" class="btn-white" data-ar="تصفح المنتجات" data-en="Browse Products">تصفح المنتجات</a>
+          <a href="#contact" class="btn-outline" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="hero-stats">
-    <div class="stat-box"><div class="num">24/7</div><div class="lbl" data-ar="دعم واستجابة فورية" data-en="Instant Support">دعم واستجابة فورية</div></div>
-    <div class="stat-box"><div class="num">100%</div><div class="lbl" data-ar="جودة طبية معتمدة" data-en="Certified Medical Quality">جودة طبية معتمدة</div></div>
-  </div>
-</section>
 
+  <!-- Slide 2 -->
+  <div class="slide" style="background-image: url('https://drive.google.com/thumbnail?id=1idJAK72msmAwd0hDkRObRnUp69Uo2C1t&sz=w1600')">
+    <div class="slide-content">
+      <div class="slide-inner">
+        <div class="hero-tag" data-ar="✅ جودة معتمدة دولياً" data-en="✅ Internationally Certified Quality">✅ جودة معتمدة دولياً</div>
+        <h1 data-ar="أربطة طبية<br/>للمحترفين <span>الصحيين</span>" data-en="Medical Bandages<br/>for <span>Healthcare</span> Professionals">أربطة طبية<br/>للمحترفين <span>الصحيين</span></h1>
+        <p data-ar="منتجات متخصصة في علاج الوذمة اللمفية وإدارة الجروح ودعم المفاصل." data-en="Specialized products for lymphedema treatment, wound management, and joint support.">منتجات متخصصة في علاج الوذمة اللمفية وإدارة الجروح ودعم المفاصل.</p>
+        <div class="hero-btns">
+          <a href="#products" class="btn-white" data-ar="اكتشف منتجاتنا" data-en="Discover Our Products">اكتشف منتجاتنا</a>
+          <a href="https://wa.me/201220772040" class="btn-outline" target="_blank" data-ar="واتساب مباشر" data-en="WhatsApp Us">واتساب مباشر</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slide" style="background-image: url('https://drive.google.com/thumbnail?id=1uFdMf9Jo1qdQTmT147eOQhJ0hDqK6p5l&sz=w1600')">
+    <div class="slide-content">
+      <div class="slide-inner">
+        <div class="hero-tag" data-ar="🚚 توصيل سريع لجميع أنحاء مصر" data-en="🚚 Fast Delivery Across Egypt">🚚 توصيل سريع لجميع أنحاء مصر</div>
+        <h1 data-ar="شريكك الموثوق<br/>في <span>التوريدات الطبية</span>" data-en="Your Trusted Partner<br/>in <span>Medical Supplies</span>">شريكك الموثوق<br/>في <span>التوريدات الطبية</span></h1>
+        <p data-ar="نصل إلى مستشفياتك وعياداتك وصيدلياتك بأسرع وقت وبأعلى جودة." data-en="We reach your hospitals, clinics, and pharmacies as fast as possible with the highest quality.">نصل إلى مستشفياتك وعياداتك وصيدلياتك بأسرع وقت وبأعلى جودة.</p>
+        <div class="hero-btns">
+          <a href="#contact" class="btn-white" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a>
+          <a href="#products" class="btn-outline" data-ar="تصفح المنتجات" data-en="Browse Products">تصفح المنتجات</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slider Controls -->
+  <button class="slider-arrow prev" onclick="changeSlide(-1)">&#8250;</button>
+  <button class="slider-arrow next" onclick="changeSlide(1)">&#8249;</button>
+  <div class="slider-dots" id="sliderDots"></div>
+</div>
+
+
+<!-- ============================================================
+     PRODUCTS
+     ============================================================ -->
 <section id="products">
   <div class="section-header">
     <div class="section-label" data-ar="منتجاتنا" data-en="Our Products">منتجاتنا</div>
@@ -186,6 +274,7 @@
   </div>
   <div class="products-grid">
 
+    <!-- FLEXIMOLL -->
     <div class="product-card">
       <div class="product-img" onclick="openLightbox(this)">
         <img loading="lazy" src="https://drive.google.com/thumbnail?id=1kFu5KN5LYp7TJ-8gYa-nmM9_FLYJDSa5&sz=w1000" alt="Fleximoll"/>
@@ -206,6 +295,7 @@
       </div>
     </div>
 
+    <!-- TUBISOFT -->
     <div class="product-card">
       <div class="product-img" onclick="openLightbox(this)">
         <img loading="lazy" src="https://drive.google.com/thumbnail?id=1WbnhlA2LkdHjtomGio7kWUYrl8nqDOzB&sz=w1000" alt="Tubisoft"/>
@@ -227,6 +317,7 @@
       </div>
     </div>
 
+    <!-- TUBICOMFORT -->
     <div class="product-card">
       <div class="product-img" onclick="openLightbox(this)">
         <img loading="lazy" src="https://drive.google.com/thumbnail?id=1JrKqzF4G-fVRMBZT-PoyxIhT1HDpTosA&sz=w1000" alt="Tubicomfort"/>
@@ -248,6 +339,7 @@
       </div>
     </div>
 
+    <!-- DERMAFOAM -->
     <div class="product-card">
       <div class="product-img" onclick="openLightbox(this)">
         <img loading="lazy" src="https://drive.google.com/thumbnail?id=1Dy5J338ovZJyWyVODsFVCpI4E3TzEsOW&sz=w1000" alt="Dermafoam"/>
@@ -271,6 +363,8 @@
   </div>
 </section>
 
+
+<!-- WHY -->
 <section id="why">
   <div class="section-header">
     <div class="section-label" data-ar="لماذا Lynka" data-en="Why Lynka">لماذا Lynka</div>
@@ -285,6 +379,10 @@
   </div>
 </section>
 
+
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
 <section id="contact">
   <div class="section-header">
     <div class="section-label" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</div>
@@ -292,48 +390,98 @@
     <p class="sub" data-ar="تواصل معنا لطلب المنتجات أو الاستفسار عن الأسعار والتوافر" data-en="Contact us to place orders or inquire about pricing and availability">تواصل معنا لطلب المنتجات أو الاستفسار عن الأسعار والتوافر</p>
   </div>
   <div class="contact-cards">
-    <a href="tel:+20XXXXXXXXXX" class="contact-card">
+
+    <a href="tel:+201220772040" class="contact-card">
       <div class="icon">📞</div>
       <div class="ctitle" data-ar="اتصل بنا" data-en="Call Us">اتصل بنا</div>
-      <div class="cval">اكتب رقمك هنا</div>
+      <div class="cval">+20 122 077 2040</div>
     </a>
-    <a href="https://wa.me/20XXXXXXXXXX" class="contact-card" target="_blank">
+
+    <a href="https://wa.me/201220772040" class="contact-card" target="_blank">
       <div class="icon">💬</div>
       <div class="ctitle" data-ar="واتساب" data-en="WhatsApp">واتساب</div>
       <div class="cval" data-ar="راسلنا الآن" data-en="Message Us">راسلنا الآن</div>
     </a>
-    <a href="mailto:info@lynka-med.com" class="contact-card">
-      <div class="icon">✉️</div>
-      <div class="ctitle" data-ar="إيميل" data-en="Email">إيميل</div>
-      <div class="cval">info@lynka-med.com</div>
+
+    <a href="https://www.facebook.com/Lynka.egy" class="contact-card" target="_blank">
+      <div class="icon">📘</div>
+      <div class="ctitle" data-ar="فيسبوك" data-en="Facebook">فيسبوك</div>
+      <div class="cval">Lynka.egy</div>
     </a>
-    <div class="contact-card">
-      <div class="icon">📍</div>
-      <div class="ctitle" data-ar="العنوان" data-en="Address">العنوان</div>
-      <div class="cval address">اكتب عنوانك هنا</div>
-    </div>
+
+    <a href="https://www.instagram.com/lynka.egy/" class="contact-card" target="_blank">
+      <div class="icon">📸</div>
+      <div class="ctitle" data-ar="انستجرام" data-en="Instagram">انستجرام</div>
+      <div class="cval">lynka.egy</div>
+    </a>
+
   </div>
 </section>
 
+
+<!-- FOOTER -->
 <footer>
+  <div class="footer-social">
+    <a href="https://www.facebook.com/Lynka.egy" target="_blank" title="Facebook">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/lynka.egy/" target="_blank" title="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+    </a>
+    <a href="https://wa.me/201220772040" target="_blank" title="WhatsApp">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+  </div>
   <p>© <span id="year"></span> <span>LYNKA</span> <span data-ar="للتوريدات الطبية — جميع الحقوق محفوظة" data-en="Medical Supplies — All Rights Reserved">للتوريدات الطبية — جميع الحقوق محفوظة</span></p>
 </footer>
+
+<!-- WHATSAPP FLOAT BUTTON -->
+<a href="https://wa.me/201220772040" class="wa-float" target="_blank" title="واتساب">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
 <script>
   // ── Year ──
   document.getElementById("year").textContent = new Date().getFullYear();
 
+  // ── SLIDER ──
+  const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.getElementById('sliderDots');
+  let current = 0, timer;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsContainer.appendChild(d);
+  });
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.add('active');
+    resetTimer();
+  }
+
+  function changeSlide(dir) { goTo(current + dir); }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 5000);
+  }
+
+  resetTimer();
+
   // ── Language Toggle ──
   let currentLang = localStorage.getItem('lang') || 'ar';
 
-  function toggleLang() {
-    currentLang = currentLang === 'ar' ? 'en' : 'ar';
-    const isEn = currentLang === 'en';
-    localStorage.setItem('lang', currentLang);
-
-    document.documentElement.lang = currentLang;
+  function applyLang(lang) {
+    const isEn = lang === 'en';
+    document.documentElement.lang = lang;
     document.documentElement.dir  = isEn ? 'ltr' : 'rtl';
-
     document.getElementById('lang-btn').textContent = isEn ? '🌐 عربي' : '🌐 EN';
 
     document.querySelectorAll('[data-ar]').forEach(el => {
@@ -347,7 +495,7 @@
       el.style.paddingRight = isEn ? '0'    : '16px';
       el.style.paddingLeft  = isEn ? '16px' : '0';
     });
-    
+
     const style = document.getElementById('dir-style') || document.createElement('style');
     style.id = 'dir-style';
     style.textContent = isEn
@@ -356,7 +504,16 @@
     document.head.appendChild(style);
   }
 
-  // ── Lightbox Functions ──
+  function toggleLang() {
+    currentLang = currentLang === 'ar' ? 'en' : 'ar';
+    localStorage.setItem('lang', currentLang);
+    applyLang(currentLang);
+  }
+
+  // Apply saved lang on load
+  if (currentLang === 'en') applyLang('en');
+
+  // ── Lightbox ──
   function openLightbox(container) {
     const img = container.querySelector('img');
     if (img) {
@@ -365,21 +522,14 @@
       document.body.style.overflow = 'hidden';
     }
   }
-  
   function closeLightbox(event) {
-    if (event.target === document.getElementById('lightbox')) {
-      forceCloseLightbox();
-    }
+    if (event.target === document.getElementById('lightbox')) forceCloseLightbox();
   }
-
   function forceCloseLightbox() {
     document.getElementById('lightbox').classList.remove('open');
     document.body.style.overflow = '';
   }
-
-  document.addEventListener('keydown', e => { 
-    if (e.key === 'Escape') forceCloseLightbox(); 
-  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') forceCloseLightbox(); });
 </script>
 </body>
 </html>
